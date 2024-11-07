@@ -9,6 +9,11 @@ function App() {
   const [grossPrice, setGrossPrice] = useState(0.0);
   const [vatToPay, setVatToPay] = useState(0.0);
   const [vatRate, setVatRate] = useState(20.0);
+  const [name, setName] = useState('');
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  }
 
   const handleNetPriceChange = (price) => {
     const gross_price = price * ((vatRate / 100) + 1);
@@ -35,7 +40,8 @@ function App() {
 
   return (
     <div className='header field'>
-      <h1> Aaryan's Calculator! </h1>
+      <input type='text' placeholder='Enter your name' value={name} onChange={handleNameChange}/>
+      <h1>Hello {name}</h1>
       VAT CALCULATOR
       <div className='colour-border'>
         <VatRateField customstyle="field" vatRateChanged={handleVatRateChanged} value={vatRate} updatePrices={updatePrices} />
